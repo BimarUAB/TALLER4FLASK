@@ -20,7 +20,19 @@ def sobrenosotros():
                                        form = formulario,
                                        titulo = formulario.titulo.data)
         return render_template('sobrenosotros.html', form = formulario)
-    
+
+"""Ruta para eliminar"""
+
+@app.route('/eliminar/<int:id>', methods=['POST'])
+
+def eliminar_tarea(id):
+    tarea =  Tarea.query.get_or_404(id)
+    db.session.delete(tarea)
+    db.session.commit()
+    flash('Tarea eliminada correctamente', 'success')
+    return redirect(url_for('mostrar_tareas'))
+
+
 @app.route('/saludo')
 def saludo():
         return 'Hola bienvenido a Taller Apps '
