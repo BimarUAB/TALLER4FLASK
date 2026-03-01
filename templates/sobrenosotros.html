@@ -2,16 +2,30 @@
 
 {% block contenido %}
 
-<h2>Taller Apps - Sobre nosotros</h2>
-<h4>Bienvenido a este sitio de taller .....</h4>
-<form action="/sobrenosotros" method="post">
-    {{ form.csrf_token() }}
-    {{ form.titulo.label }}
-    {{ form.titulo }}
-    {{ form.enviar }}
-</form>
-{% if titulo %}
-    <h2>{{ titulo }}</h2>
+<h1>
+    {% if editar %}
+        Editar Tarea
+    {% else %}
+
 {% endif %}
+</h1>
+
+<form method="POST">
+    {{ form.csrf_token() }}
+    <div>
+        {{ form.titulo.label }}
+        {{ form.titulo }}
+    </div>
+    <div>
+        {% if editar %}
+            {{ form.enviar(value="Actualizar") }}
+        {% else %}
+            {{ form.enviar }}
+        {% endif %}
+    </div>
+</form>
+
+<br>
+<a href="{{ url_for('mostrar_tareas') }}">Ver todas las tareas</a>
 
 {% endblock %}
