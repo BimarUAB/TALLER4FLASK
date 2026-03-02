@@ -1,0 +1,10 @@
+<h1>Menu Principal</h1>
+    <ul>
+        <button><li><a href="/index"> Inicio  </a></li></button><br><br>
+        <button><li><a href="/sobrenosotros"> Sobre Nosotros </a></li></button><br><br>
+        <button><li><a href="{{ url_for('mostrar_tareas') }}"> Listado Tareas </a></li></button>
+    </ul>
+<hr>
+
+{% block contenido %}
+{% endblock %}

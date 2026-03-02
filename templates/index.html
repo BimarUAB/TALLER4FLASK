@@ -1,0 +1,24 @@
+{% extends  "base.html" %}
+
+{% block contenido %}
+
+    <h2>Taller Apps - Inicio</h2>
+    <h4>Bienvenido a este sitio de taller GRUPO 5 .....</h4>
+    <h4>{{subtitulo}}</h4>
+
+
+<p>
+    <button><a href="{{ url_for('mostrar_tareas') }}">Ir al Listado de Tareas</a></button> | 
+    <button><a href="{{ url_for('sobrenosotros') }}">Agregar Nueva Tarea</a></button>
+</p>
+
+<h3>Tareas Recientes:</h3>
+<ul>
+    {% for tarea in tareas %}
+        <li>{{ tarea.titulo }} (ID: {{ tarea.id }})</li>
+    {% else %}
+        <li>No hay tareas aún.</li>
+    {% endfor %}
+</ul>
+    
+{% endblock %}

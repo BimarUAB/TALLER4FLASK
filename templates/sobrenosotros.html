@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1>
+    {% if editar %}
+        Editar Tarea
+    {% else %}
+
+{% endif %}
+</h1>
+
+<form method="POST">
+    {{ form.csrf_token() }}
+    <div>
+        {{ form.titulo.label }}
+        {{ form.titulo }}
+    </div>
+    <div>
+        {% if editar %}
+            {{ form.enviar(value="Actualizar") }}
+        {% else %}
+            {{ form.enviar }}
+        {% endif %}
+    </div>
+</form>
+
+<br>
+<a href="{{ url_for('mostrar_tareas') }}">Ver todas las tareas</a>
+{% endblock %}

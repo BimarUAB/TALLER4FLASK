@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1>Detalle de Tarea</h1>
+<p><strong>ID:</strong> {{ tarea.id }}</p>
+<p><strong>Título:</strong> {{ tarea.titulo }}</p>
+<br>
+<a href="{{ url_for('mostrar_tareas') }}">Volver al listado</a>
+{% endblock %}
