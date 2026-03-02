@@ -1,4 +1,10 @@
-SE GREGO EL LISTADO DE TAREAS 
+GRUPO 5 TALLER DE APLICACIONES
+
+1.Delia Mamani Saucedo
+2. Marian Celeste Gironda Chura
+3. Bimar Quispe Lucana
+
+SE AGREGO EL LISTADO DE TAREAS 
 
 EDITAR
 ELIMINAR
