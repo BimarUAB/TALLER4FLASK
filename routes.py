@@ -17,31 +17,6 @@ def sobrenosotros():
                 nueva_tarea = Tarea (titulo =  formulario.titulo.data)
                 db.session.add(nueva_tarea)
                 db.session.commit()
-                flash('se envio correctamente', 'success')
-                return redirect(url_for('index'))
-            return render_template('sobrenosotros.html', form=formulario)
-
-#----- Nuevas rutas ---
-#---ver tareas---
-
-
-
-#--- Editar-------
-@app.route('/editar/<int:id>', methods=['GET', 'POST'])
-def editar_tarea(id):
-    """Edita una tarea existente"""
-    tarea = Tarea.query.get_or_404(id)
-    formulario = formularios.FormAgregarTareas(obj=tarea)
-    
-    if formulario.validate_on_submit():
-        tarea.titulo = formulario.titulo.data
-        db.session.commit()
-        flash('Tarea actualizada correctamente', 'success')
-        return redirect(url_for('mostrar_tareas'))
-    
-    return render_template('sobrenosotros.html', form=formulario, editar=True)
-
-
 
 @app.route('/saludo')
 def saludo():
