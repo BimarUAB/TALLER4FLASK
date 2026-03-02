@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1>Listado de Tareas</h1>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tarea in tareas %}
+        <tr>
+            <td>{{ tarea.id }}</td>
+            <td>{{ tarea.titulo }}</td>
+            <td>
+                <button><a href="{{ url_for('ver_tarea', id=tarea.id) }}">Ver </a></button>  |
+                <button><a href="{{ url_for('editar_tarea', id=tarea.id) }}">Editar</a></button>  |
+                
+                <form action="{{ url_for('eliminar_tarea', id=tarea.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('¿Estás seguro?');">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3">No hay tareas registradas</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+<a href="{{ url_for('sobrenosotros') }}">Agregar Nueva Tarea</a>
+{% endblock %}
+
+

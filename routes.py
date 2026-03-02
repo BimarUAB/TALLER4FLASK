@@ -1,12 +1,14 @@
 from app import app, db
-from flask import render_template
+from flask import render_template, redirect, url_for, request, flash
 import formularios
 from models import Tarea
 
 @app.route('/')
 @app.route('/index')
 def index():
-        return render_template('index.html', subtitulo = "Actidad en grupo TAI")
+        #Obtenemos todas las tareas para mostrarlas en el inicio
+        tareas = Tarea.query.all()
+        return render_template('index.html', subtitulo = "Actidad en grupo TAI", tareas=tareas)
 
 @app.route('/sobrenosotros', methods = ['GET', 'POST'])
 def sobrenosotros():
@@ -15,23 +17,6 @@ def sobrenosotros():
                 nueva_tarea = Tarea (titulo =  formulario.titulo.data)
                 db.session.add(nueva_tarea)
                 db.session.commit()
-                print('se envio correctamente', formulario.titulo.data)
-                return render_template('sobrenosotros.html', 
-                                       form = formulario,
-                                       titulo = formulario.titulo.data)
-        return render_template('sobrenosotros.html', form = formulario)
-
-"""Ruta para eliminar"""
-
-@app.route('/eliminar/<int:id>', methods=['POST'])
-
-def eliminar_tarea(id):
-    tarea =  Tarea.query.get_or_404(id)
-    db.session.delete(tarea)
-    db.session.commit()
-    flash('Tarea eliminada correctamente', 'success')
-    return redirect(url_for('mostrar_tareas'))
-
 
 @app.route('/saludo')
 def saludo():
